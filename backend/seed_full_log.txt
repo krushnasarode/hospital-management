@@ -1,0 +1,151 @@
+﻿[dotenv@17.3.1] injecting env (5) from .env -- tip: ≡ƒöÉ encrypt with Dotenvx: https://dotenvx.com
+Connected to MongoDB
+Cleared existing data
+Departments seeded
+Users seeded
+Rooms seeded
+node : Seed error: 
+MongoBulkWriteError: 
+E11000 duplicate key 
+error collection: hospi
+tal_management.patients
+ index: patientId_1 
+dup key: { patientId: 
+null }
+At line:1 char:1
++ node scripts/seed.js 
+2>&1 | Out-File 
+-FilePath 
+"seed_full_log.txt" -E 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Seed error: M   
+ on...tientId: null    
+ }:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+    at OrderedBulkOpera
+tion.handleWriteError (
+C:\Users\krush\OneDrive
+\Desktop\p\hospital-man
+agement\backend\node_mo
+dules\mongodb\lib\bulk\
+common.js:804:19)
+    at executeCommands 
+(C:\Users\krush\OneDriv
+e\Desktop\p\hospital-ma
+nagement\backend\node_m
+odules\mongodb\lib\bulk
+\common.js:346:23)
+    at process.processT
+icksAndRejections (node
+:internal/process/task_
+queues:105:5)
+    at async C:\Users\k
+rush\OneDrive\Desktop\p
+\hospital-management\ba
+ckend\node_modules\mong
+odb\lib\bulk\common.js:
+790:24
+    at async MongoClien
+t.withSession (C:\Users
+\krush\OneDrive\Desktop
+\p\hospital-management\
+backend\node_modules\mo
+ngodb\lib\mongo_client.
+js:477:20)
+    at async OrderedBul
+kOperation.execute (C:\
+Users\krush\OneDrive\De
+sktop\p\hospital-manage
+ment\backend\node_modul
+es\mongodb\lib\bulk\com
+mon.js:789:20)
+    at async 
+Collection.bulkWrite (C
+:\Users\krush\OneDrive\
+Desktop\p\hospital-mana
+gement\backend\node_mod
+ules\mongodb\lib\collec
+tion.js:224:16)
+    at async 
+Collection.insertMany (
+C:\Users\krush\OneDrive
+\Desktop\p\hospital-man
+agement\backend\node_mo
+dules\mongodb\lib\colle
+ction.js:171:25) {
+  errorLabelSet: 
+Set(0) {},
+  errorResponse: {
+    message: 'E11000 
+duplicate key error 
+collection: hospital_ma
+nagement.patients 
+index: patientId_1 dup 
+key: { patientId: null 
+}',
+    code: 11000,
+    writeErrors: [ 
+[Object] ]
+  },
+  code: 11000,
+  writeErrors: [ { 
+err: [Object], index: 
+1 } ],
+  result: 
+BulkWriteResult {
+    insertedCount: 1,
+    matchedCount: 0,
+    modifiedCount: 0,
+    deletedCount: 0,
+    upsertedCount: 0,
+    upsertedIds: {},
+    insertedIds: { 
+'0': new ObjectId('69ba
+a21bc9a79cba080b9576') 
+}
+  },
+  insertedDocs: [
+    {
+      firstName: 
+'Rajesh',
+      lastName: 
+'Kumar',
+      email: 
+'rajesh.k@email.com',
+      phone: 
+'8000000001',
+      dateOfBirth: 1980
+-05-15T00:00:00.000Z,
+      gender: 'Male',
+      bloodGroup: 'B+',
+      address: 
+[Object],
+      medicalHistory: 
+[Array],
+      allergies: 
+[Array],
+      assignedDoctor: 
+new ObjectId('69baa21bc
+9a79cba080b9563'),
+      isAdmitted: 
+false,
+      status: 'Active',
+      _id: new ObjectId
+('69baa21bc9a79cba080b9
+576'),
+      __v: 0,
+      createdAt: 2026-0
+3-18T13:01:15.459Z,
+      updatedAt: 2026-0
+3-18T13:01:15.459Z
+    }
+  ]
+}
