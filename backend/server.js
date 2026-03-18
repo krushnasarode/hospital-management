@@ -50,13 +50,27 @@ app.use((err, req, res, next) => {
 
 // Connect DB and start server
 const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error('❌ MongoDB URI is not defined in environment variables');
+  process.exit(1);
+} else {
+  // Mask URI for security in logs
+  const maskedUri = MONGO_URI.replace(/:([^@]+)@/, ':****@');
+  console.log(`📡 Attempting to connect to MongoDB: ${maskedUri}`);
+}
+
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Connected');
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
   .catch((err) => {
     console.error('❌ MongoDB connection error:', err.message);
+    if (err.message.includes('whitelist')) {
+      console.error('💡 TIP: Check your MongoDB Atlas Network Access whitelist. You likely need to allow access from 0.0.0.0/0 for Render.');
+    }
     process.exit(1);
   });
