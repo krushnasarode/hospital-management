@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://hospital-management-backend.render.com/api/:path*"
+      "destination": "https://hospital-management-lbg2.onrender.com/api/:path*"
     }
   ]
 }
