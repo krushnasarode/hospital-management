@@ -11,14 +11,20 @@ const app = express();
 // Middleware
 const allowedOrigins = [
   'http://localhost:5173',
-  process.env.FRONTEND_URL, // We will add this later
-].filter(Boolean);
+  process.env.FRONTEND_URL,
+].filter(Boolean).map(url => url.replace(/\/$/, "")); // Remove trailing slash
+
+console.log('🔒 CORS Allowed Origins:', allowedOrigins);
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
       callback(null, true);
     } else {
+      console.warn(`⚠️ CORS blocked for origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
